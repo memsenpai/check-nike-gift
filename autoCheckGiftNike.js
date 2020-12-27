@@ -1,5 +1,6 @@
 let raw = [];
 let result = [];
+let erros = [];
 let currentIndex = 0;
 const processRaw = (data) => {
   raw = data.split('\n').filter(i => i && i.indexOf('|') !== -1).map(item => item.split('|'));
@@ -8,6 +9,7 @@ const processRaw = (data) => {
 
 const getResult = () => {
   console.log(result.join('\n'));
+  console.log(erros.join('\n'));
 }
 
 const check = () => {
@@ -23,6 +25,8 @@ const check = () => {
         if (this.status == 200)  {
            const {balance} = JSON.parse(this.response);
            result.push([accountNumber, pin, balance].join('|'));
+        } else {
+          erros.push([accountNumber, pin, this.response].join('|'));
         }
         currentIndex += 1;
         currentIndex < raw.length && check();
