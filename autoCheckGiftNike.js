@@ -22,9 +22,9 @@ const check = () => {
       if (this.readyState == 4 && this.status == 200) {
          const {balance} = JSON.parse(this.response);
          result.push([accountNumber, pin, balance].join('|'));
-         currentIndex += 1;
-         check();
       }
+      currentIndex += 1;
+      check();
   };
   xhttp.open('POST', 'https://api.nike.com/payment/giftcard_balance/v1/', true);
   xhttp.setRequestHeader('accept', 'application/json');
